@@ -1,0 +1,960 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mis Canales Alternativos | Reactiva Emprendedores Univalle</title>
+    <!-- Carga de Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Fuentes Google: Cormorant Garamond para elegancia editorial e Inter para legibilidad -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,600&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        ivory: {
+                            50: '#FAF7F0',
+                            100: '#F3EDE0',
+                            200: '#E8DFCA',
+                        },
+                        gold: {
+                            light: '#F5D061',
+                            DEFAULT: '#E6B84D',
+                            metallic: '#D4AF37',
+                            dark: '#B58E22',
+                        },
+                        olive: {
+                            light: '#6B7D5C',
+                            DEFAULT: '#556B2F',
+                            deep: '#3E4A35',
+                        },
+                        tealbrand: {
+                            light: '#6BA7B7',
+                            DEFAULT: '#4A8B9C',
+                            deep: '#2C6E7F',
+                        },
+                        earth: {
+                            DEFAULT: '#5C4938',
+                            light: '#7D6652',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        serif: ['Cormorant Garamond', 'serif'],
+                    },
+                    boxShadow: {
+                        'gold-glow': '0 0 24px rgba(230, 184, 77, 0.28)',
+                        'card-warm': '0 10px 30px -5px rgba(92, 73, 56, 0.08)',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Estilos base y partículas ambientales inspiradas en las notas doradas */
+        body {
+            background-color: #FAF7F0;
+            color: #3E4A35;
+            overflow-x: hidden;
+        }
+
+        .gold-border-subtle {
+            border: 1px solid rgba(212, 175, 55, 0.35);
+        }
+
+        .gold-border-glow {
+            border: 1.5px solid #D4AF37;
+            box-shadow: 0 8px 32px rgba(212, 175, 55, 0.2);
+        }
+
+        .gold-gradient-text {
+            background: linear-gradient(135deg, #B58E22 0%, #E6B84D 50%, #9E7B1C 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .gold-gradient-bg {
+            background: linear-gradient(135deg, #E6B84D 0%, #D4AF37 55%, #C59B27 100%);
+        }
+
+        /* Animación suave para el resplandor de la llama y loto */
+        @keyframes pulseGlow {
+            0%, 100% { filter: drop-shadow(0 0 6px rgba(245, 208, 97, 0.55)); }
+            50% { filter: drop-shadow(0 0 14px rgba(230, 184, 77, 0.9)); }
+        }
+
+        .lotus-glow {
+            animation: pulseGlow 4s ease-in-out infinite;
+        }
+
+        /* Transiciones de pestañas */
+        .tab-panel {
+            transition: opacity 0.35s ease, transform 0.35s ease;
+        }
+        .tab-panel.hidden-panel {
+            display: none;
+            opacity: 0;
+            transform: translateY(8px);
+        }
+        .tab-panel.active-panel {
+            display: block;
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Modo Presentación (Diapositivas a pantalla completa) */
+        body.presentation-active {
+            background-color: #F3EDE0;
+        }
+        body.presentation-active .no-presentation {
+            display: none !important;
+        }
+        body.presentation-active .presentation-controls {
+            display: flex !important;
+        }
+        body.presentation-active .slide-container {
+            min-height: calc(100vh - 140px);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        /* Optimización para Impresión / Guardar PDF */
+        @media print {
+            body {
+                background-color: #FFFFFF !important;
+                color: #1e293b !important;
+                font-size: 10pt;
+            }
+            .no-print {
+                display: none !important;
+            }
+            .tab-panel {
+                display: block !important;
+                opacity: 1 !important;
+                transform: none !important;
+                margin-bottom: 24px !important;
+                page-break-inside: avoid;
+            }
+            .shadow-card-warm, .shadow-gold-glow, .gold-border-glow {
+                box-shadow: none !important;
+            }
+            header {
+                border-bottom: 2px solid #D4AF37 !important;
+                padding-bottom: 12px !important;
+            }
+        }
+    </style>
+</head>
+<body class="antialiased selection:bg-gold-light selection:text-olive-deep">
+
+    <!-- Fondo decorativo sutil con destellos dorados -->
+    <div class="fixed inset-0 pointer-events-none z-0 overflow-hidden no-print" aria-hidden="true">
+        <div class="absolute -top-24 -right-24 w-96 h-96 rounded-full bg-gold-light/15 blur-3xl"></div>
+        <div class="absolute top-1/2 -left-32 w-80 h-80 rounded-full bg-tealbrand-light/10 blur-3xl"></div>
+        <div class="absolute bottom-0 right-1/4 w-96 h-96 rounded-full bg-olive-light/10 blur-3xl"></div>
+    </div>
+
+    <!-- Contenedor Principal -->
+    <div class="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-10">
+
+        <!-- 1. ENCABEZADO INSTITUCIONAL Y DE MARCA -->
+        <header class="bg-white/90 backdrop-blur-md rounded-3xl p-6 sm:p-8 shadow-card-warm gold-border-subtle mb-8">
+            <div class="flex flex-col lg:flex-row items-center justify-between gap-6">
+                
+                <!-- Identidad Visual: Logotipo SVG personalizado + Títulos -->
+                <div class="flex flex-col sm:flex-row items-center text-center sm:text-left gap-5 sm:gap-6">
+                    <!-- Emblema Circular Loto y Llama Dorada -->
+                    <div class="relative flex-shrink-0 w-24 h-24 sm:w-28 sm:h-28">
+                        <svg viewBox="0 0 220 220" class="w-full h-full lotus-glow" role="img" aria-label="Logotipo Emblema Loto y Llama Dorada">
+                            <defs>
+                                <!-- Gradiente de fondo marfil texturizado -->
+                                <radialGradient id="ivoryCoinBg" cx="45%" cy="40%" r="60%">
+                                    <stop offset="0%" stop-color="#FFFDF9"/>
+                                    <stop offset="70%" stop-color="#F6F0E2"/>
+                                    <stop offset="100%" stop-color="#EAE0CA"/>
+                                </radialGradient>
+                                <!-- Gradiente dorado metálico -->
+                                <linearGradient id="metallicGold" x1="0%" y1="0%" x2="100%" y2="100%">
+                                    <stop offset="0%" stop-color="#F7DC79"/>
+                                    <stop offset="35%" stop-color="#D4AF37"/>
+                                    <stop offset="70%" stop-color="#B38728"/>
+                                    <stop offset="100%" stop-color="#F3D066"/>
+                                </linearGradient>
+                                <!-- Gradiente luminoso para pétalos y llama -->
+                                <linearGradient id="brightGold" x1="0%" y1="100%" x2="0%" y2="0%">
+                                    <stop offset="0%" stop-color="#C89B2B"/>
+                                    <stop offset="55%" stop-color="#E6B84D"/>
+                                    <stop offset="100%" stop-color="#FFF2B2"/>
+                                </linearGradient>
+                                <!-- Resplandor suave -->
+                                <filter id="softGoldGlow" x="-20%" y="-20%" width="140%" height="140%">
+                                    <feGaussianBlur stdDeviation="2.5" result="blur"/>
+                                    <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+                                </filter>
+                            </defs>
+
+                            <!-- Borde exterior metálico doble -->
+                            <circle cx="110" cy="110" r="104" fill="url(#metallicGold)" />
+                            <circle cx="110" cy="110" r="98" fill="url(#ivoryCoinBg)" />
+                            <circle cx="110" cy="110" r="94" fill="none" stroke="url(#metallicGold)" stroke-width="2" />
+
+                            <!-- Ramas curvilíneas simétricas y hojas laterales -->
+                            <g fill="none" stroke="url(#metallicGold)" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round">
+                                <!-- Tallo central hacia loto -->
+                                <path d="M110 118 C110 132, 95 142, 85 152 C72 165, 88 184, 110 184 C132 184, 148 165, 135 152 C125 142, 110 132, 110 118" />
+                                <!-- Espirales laterales izquierdas -->
+                                <path d="M107 134 C88 124, 68 134, 72 150 C75 160, 88 158, 88 148" />
+                                <path d="M106 168 C78 176, 52 154, 48 122" />
+                                <path d="M74 166 C56 162, 42 146, 38 128" />
+                                <!-- Espirales laterales derechas -->
+                                <path d="M113 134 C132 124, 152 134, 148 150 C145 160, 132 158, 132 148" />
+                                <path d="M114 168 C142 176, 168 154, 172 122" />
+                                <path d="M146 166 C164 162, 178 146, 182 128" />
+                            </g>
+
+                            <!-- Hojas doradas en las ramas -->
+                            <g fill="url(#brightGold)" stroke="#A67C1E" stroke-width="1">
+                                <!-- Izquierda -->
+                                <path d="M48 122 C42 112, 46 100, 52 96 C56 104, 54 115, 48 122 Z" />
+                                <path d="M38 128 C30 120, 31 108, 36 103 C42 110, 43 120, 38 128 Z" />
+                                <path d="M55 144 C45 142, 40 133, 42 127 C49 130, 54 137, 55 144 Z" />
+                                <!-- Derecha -->
+                                <path d="M172 122 C178 112, 174 100, 168 96 C164 104, 166 115, 172 122 Z" />
+                                <path d="M182 128 C190 120, 189 108, 184 103 C178 110, 177 120, 182 128 Z" />
+                                <path d="M165 144 C175 142, 180 133, 178 127 C171 130, 166 137, 165 144 Z" />
+                            </g>
+
+                            <!-- Llama dorada brillante en la base central -->
+                            <g filter="url(#softGoldGlow)">
+                                <path d="M110 144 C118 155, 121 164, 116 171 C113 175, 107 175, 104 171 C99 164, 102 155, 110 144 Z" fill="url(#brightGold)" stroke="#FFF5C0" stroke-width="1.2"/>
+                                <path d="M110 155 C114 161, 115 166, 112 170 C110 172, 108 170, 107 167 C106 163, 108 159, 110 155 Z" fill="#FFFDF5"/>
+                            </g>
+
+                            <!-- Flor de Loto Geométrica Dorada Luminosa -->
+                            <g filter="url(#softGoldGlow)" stroke="#FFF4BD" stroke-width="1.3" stroke-linejoin="round">
+                                <!-- Pétalos traseros -->
+                                <path d="M110 116 L76 80 L88 64 L110 92 Z" fill="url(#metallicGold)"/>
+                                <path d="M110 116 L144 80 L132 64 L110 92 Z" fill="url(#metallicGold)"/>
+                                <!-- Pétalos laterales bajos -->
+                                <path d="M110 116 L54 104 L64 88 L92 104 Z" fill="url(#brightGold)"/>
+                                <path d="M110 116 L166 104 L156 88 L128 104 Z" fill="url(#brightGold)"/>
+                                <!-- Pétalos medios -->
+                                <path d="M110 116 L66 84 L82 72 L104 100 Z" fill="url(#brightGold)"/>
+                                <path d="M110 116 L154 84 L138 72 L116 100 Z" fill="url(#brightGold)"/>
+                                <!-- Pétalo central facetado -->
+                                <path d="M110 116 L94 76 L110 46 L126 76 Z" fill="url(#brightGold)"/>
+                                <line x1="110" y1="46" x2="110" y2="116" stroke="#FFF9D6" stroke-width="1.2"/>
+                            </g>
+                        </svg>
+                    </div>
+
+                    <!-- Textos Institucionales -->
+                    <div>
+                        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-ivory-100 border border-gold/30 text-earth text-xs font-semibold tracking-wide uppercase mb-2">
+                            <span class="w-2 h-2 rounded-full bg-gold-metallic"></span>
+                            Universidad del Valle · Vicerrectoría de Extensión y Proyección Social
+                        </div>
+                        <h1 class="font-serif text-3xl sm:text-4xl font-bold text-olive-deep tracking-tight">
+                            Mis Canales Alternativos
+                        </h1>
+                        <p class="text-sm sm:text-base text-earth font-medium mt-1">
+                            Programa <span class="text-tealbrand-deep font-semibold">Reactiva Emprendedores Univalle</span> · Sesión 7: Ventas y Canales
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Acciones Rápidas: Modo Presentación e Imprimir PDF -->
+                <div class="flex flex-wrap items-center justify-center gap-3 no-print">
+                    <button id="btnPresentationMode" onclick="togglePresentationMode()" class="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-tealbrand-deep hover:bg-tealbrand text-white text-sm font-medium shadow-sm transition-all cursor-pointer">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 12l3-3 3 3 4-4M8 21l4-4 4 4M3 4h18M4 4h16v12a1 1 0 01-1 1H5a1 1 0 01-1-1V4z"/></svg>
+                        <span id="btnPresentationLabel">Modo Presentación</span>
+                    </button>
+                    <button onclick="window.print()" class="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl gold-gradient-bg hover:brightness-105 text-olive-deep text-sm font-semibold shadow-sm transition-all cursor-pointer">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"/></svg>
+                        <span>Imprimir / Guardar PDF</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Barra de Navegación por Pestañas -->
+            <nav class="mt-6 pt-5 border-t border-ivory-200 flex flex-wrap items-center justify-between gap-3 no-print no-presentation" aria-label="Secciones de la presentación">
+                <div class="flex flex-wrap gap-2">
+                    <button onclick="switchTab('all')" id="tab-all" class="tab-btn px-4 py-2 rounded-xl text-sm font-semibold transition-all bg-olive-deep text-white shadow-sm cursor-pointer">
+                        Vista Completa
+                    </button>
+                    <button onclick="switchTab('sec1')" id="tab-sec1" class="tab-btn px-4 py-2 rounded-xl text-sm font-medium transition-all bg-ivory-100 text-earth hover:bg-ivory-200 cursor-pointer">
+                        1. Diagnóstico Inicial
+                    </button>
+                    <button onclick="switchTab('sec2')" id="tab-sec2" class="tab-btn px-4 py-2 rounded-xl text-sm font-medium transition-all bg-ivory-100 text-earth hover:bg-ivory-200 cursor-pointer">
+                        2. Selección de Canal
+                    </button>
+                    <button onclick="switchTab('sec3')" id="tab-sec3" class="tab-btn px-4 py-2 rounded-xl text-sm font-medium transition-all bg-ivory-100 text-earth hover:bg-ivory-200 cursor-pointer">
+                        3. Decisión Estratégica
+                    </button>
+                </div>
+                <span class="text-xs text-earth-light hidden sm:inline">Haz clic en las tarjetas o criterios para explorar detalles</span>
+            </nav>
+        </header>
+
+        <!-- CONTROLES DEL MODO PRESENTACIÓN (Oculto por defecto) -->
+        <div class="presentation-controls hidden items-center justify-between bg-white/95 rounded-2xl px-6 py-3 mb-6 gold-border-subtle shadow-card-warm no-print">
+            <div class="flex items-center gap-3">
+                <span class="px-3 py-1 rounded-lg bg-gold-light/30 text-olive-deep text-xs font-bold uppercase tracking-wider">Diapositiva <span id="slideNumber">1</span> de 3</span>
+                <span id="slideTitle" class="text-sm font-semibold text-earth">1. Diagnóstico Inicial</span>
+            </div>
+            <div class="flex items-center gap-2">
+                <button onclick="prevSlide()" class="px-3 py-1.5 rounded-lg bg-ivory-100 hover:bg-ivory-200 text-olive-deep text-sm font-medium transition cursor-pointer">← Anterior</button>
+                <button onclick="nextSlide()" class="px-3 py-1.5 rounded-lg bg-olive-deep hover:bg-olive text-white text-sm font-medium transition cursor-pointer">Siguiente →</button>
+                <button onclick="togglePresentationMode()" class="ml-2 px-3 py-1.5 rounded-lg border border-earth/20 text-earth text-xs font-medium hover:bg-ivory-100 transition cursor-pointer">Salir (Esc)</button>
+            </div>
+        </div>
+
+        <!-- CONTENIDO PRINCIPAL DE LA PRESENTACIÓN -->
+        <main class="space-y-8 slide-container">
+
+            <!-- ========================================================= -->
+            <!-- SECCIÓN 1: DIAGNÓSTICO INICIAL                            -->
+            <!-- ========================================================= -->
+            <section id="panel-sec1" class="tab-panel active-panel space-y-6">
+                <div class="flex items-center justify-between border-b border-gold/30 pb-3">
+                    <div>
+                        <span class="text-xs font-bold uppercase tracking-widest text-tealbrand-deep">Fase 01</span>
+                        <h2 class="font-serif text-2xl sm:text-3xl font-bold text-olive-deep">1. Diagnóstico Inicial</h2>
+                    </div>
+                    <span class="px-3 py-1 rounded-full bg-white text-earth text-xs font-medium gold-border-subtle">Situación Actual del Negocio</span>
+                </div>
+
+                <!-- Grid Superior: Canales Actuales + Perfil de Cliente Principal -->
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+                    
+                    <!-- Canales que uso hoy (7 columnas) -->
+                    <div class="lg:col-span-7 bg-white rounded-3xl p-6 shadow-card-warm gold-border-subtle flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center justify-between mb-4">
+                                <h3 class="text-lg font-bold text-olive-deep flex items-center gap-2">
+                                    <span class="w-2.5 h-2.5 rounded-full bg-gold-metallic"></span>
+                                    Canales Actuales de Venta
+                                </h3>
+                                <span class="text-xs text-earth-light">Sin intermediarios ni comisiones</span>
+                            </div>
+
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                <!-- Canal 1: Tienda Física -->
+                                <div class="rounded-2xl bg-ivory-50 p-5 border border-ivory-200 hover:border-gold transition-all">
+                                    <div class="flex items-center justify-between mb-3">
+                                        <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-olive-deep/10 text-olive-deep text-xs font-bold">
+                                            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/></svg>
+                                            Tienda Física
+                                        </span>
+                                        <span class="px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-800 text-xs font-semibold">Rentable: Sí</span>
+                                    </div>
+                                    <p class="text-sm font-semibold text-olive-deep mb-1">Distribución de Ventas:</p>
+                                    <p class="text-sm text-earth leading-relaxed mb-3">Mayor volumen de transacciones, pero representa <strong class="text-olive-deep">menos ingresos totales</strong>.</p>
+                                    <div class="pt-2.5 border-t border-ivory-200 flex items-center justify-between text-xs text-earth-light">
+                                        <span>¿Depende de terceros?</span>
+                                        <span class="font-semibold text-tealbrand-deep">No (0% comisión)</span>
+                                    </div>
+                                </div>
+
+                                <!-- Canal 2: WhatsApp -->
+                                <div class="rounded-2xl bg-ivory-50 p-5 border border-gold/40 hover:border-gold transition-all relative overflow-hidden">
+                                    <div class="flex items-center justify-between mb-3">
+                                        <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-tealbrand/15 text-tealbrand-deep text-xs font-bold">
+                                            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/></svg>
+                                            WhatsApp Directo
+                                        </span>
+                                        <span class="px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-800 text-xs font-semibold">Rentable: Sí</span>
+                                    </div>
+                                    <p class="text-sm font-semibold text-olive-deep mb-1">Distribución de Ventas:</p>
+                                    <p class="text-sm text-earth leading-relaxed mb-3">Menor volumen de transacciones, pero genera <strong class="text-tealbrand-deep">mayores ingresos totales</strong> (alto ticket).</p>
+                                    <div class="pt-2.5 border-t border-ivory-200 flex items-center justify-between text-xs text-earth-light">
+                                        <span>¿Depende de terceros?</span>
+                                        <span class="font-semibold text-tealbrand-deep">No (sin pasarela)</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mt-4 pt-3 border-t border-ivory-200 flex items-center gap-2 text-xs text-earth">
+                            <svg class="w-4 h-4 text-gold-dark flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"/></svg>
+                            <span><strong>Hallazgo clave:</strong> El canal digital (WhatsApp) concentra mayor rentabilidad por cierre sin costos de intermediación.</span>
+                        </div>
+                    </div>
+
+                    <!-- Perfil de Cliente Principal (5 columnas) -->
+                    <div class="lg:col-span-5 bg-white rounded-3xl p-6 shadow-card-warm gold-border-subtle flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center justify-between mb-4">
+                                <h3 class="text-lg font-bold text-olive-deep flex items-center gap-2">
+                                    <span class="w-2.5 h-2.5 rounded-full bg-tealbrand"></span>
+                                    Mi Cliente Principal
+                                </h3>
+                                <span class="px-2.5 py-1 rounded-full bg-tealbrand/10 text-tealbrand-deep text-xs font-semibold">Internacional</span>
+                            </div>
+
+                            <div class="space-y-4">
+                                <div class="flex items-start gap-3.5 p-3.5 rounded-2xl bg-ivory-50 border border-ivory-200">
+                                    <div class="w-9 h-9 rounded-xl bg-gold/20 text-gold-dark flex items-center justify-center flex-shrink-0 font-bold">
+                                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                                    </div>
+                                    <div>
+                                        <p class="text-xs font-bold uppercase tracking-wider text-earth-light">Ubicación Geográfica</p>
+                                        <p class="text-sm font-semibold text-olive-deep">Inglaterra (Reino Unido)</p>
+                                        <p class="text-xs text-earth mt-0.5">Mercado extranjero con alta valoración por servicios digitales.</p>
+                                    </div>
+                                </div>
+
+                                <div class="flex items-start gap-3.5 p-3.5 rounded-2xl bg-ivory-50 border border-ivory-200">
+                                    <div class="w-9 h-9 rounded-xl bg-tealbrand/15 text-tealbrand-deep flex items-center justify-center flex-shrink-0">
+                                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/></svg>
+                                    </div>
+                                    <div>
+                                        <p class="text-xs font-bold uppercase tracking-wider text-earth-light">Perfil y Privacidad</p>
+                                        <p class="text-sm font-semibold text-olive-deep">Cliente Anónimo (Edad reservada)</p>
+                                        <p class="text-xs text-earth mt-0.5">Valora la discreción y el trato directo sin formularios invasivos.</p>
+                                    </div>
+                                </div>
+
+                                <div class="flex items-start gap-3.5 p-3.5 rounded-2xl bg-ivory-50 border border-ivory-200">
+                                    <div class="w-9 h-9 rounded-xl bg-olive-deep/10 text-olive-deep flex items-center justify-center flex-shrink-0">
+                                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8h2a2 2 0 012 2v6a2 2 0 01-2 2h-2v4l-4-4H9a1.994 1.994 0 01-1.414-.586m0 0L11 14h4a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2v4l.586-.586z"/></svg>
+                                    </div>
+                                    <div>
+                                        <p class="text-xs font-bold uppercase tracking-wider text-earth-light">Preferencia de Compra</p>
+                                        <p class="text-sm font-semibold text-olive-deep">Conversación 1 a 1 por WhatsApp</p>
+                                        <p class="text-xs text-earth mt-0.5">Negociación personalizada y cierre directo por mensajería.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Mapa Visual del Recorrido del Cliente (Customer Journey) -->
+                <div class="bg-white rounded-3xl p-6 sm:p-8 shadow-card-warm gold-border-subtle">
+                    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-6">
+                        <div>
+                            <h3 class="text-lg font-bold text-olive-deep">Mapa del Recorrido del Cliente (Customer Journey)</h3>
+                            <p class="text-xs sm:text-sm text-earth">Identificación de fortalezas y etapas críticas donde se pierden clientes</p>
+                        </div>
+                        <div class="flex items-center gap-3 text-xs">
+                            <span class="inline-flex items-center gap-1.5 text-olive-deep font-medium"><span class="w-2.5 h-2.5 rounded-full bg-emerald-500"></span> Fluido / Fortaleza</span>
+                            <span class="inline-flex items-center gap-1.5 text-amber-800 font-bold"><span class="w-2.5 h-2.5 rounded-full bg-amber-500"></span> Punto Crítico de Fuga</span>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
+                        <!-- Etapa 1: Descubrir -->
+                        <div class="rounded-2xl p-4 bg-ivory-50 border border-ivory-200 flex flex-col justify-between">
+                            <div>
+                                <div class="flex items-center justify-between mb-2">
+                                    <span class="text-xs font-bold text-tealbrand-deep uppercase">01. Descubrir</span>
+                                    <span class="px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-800 text-[11px] font-semibold">Fortaleza</span>
+                                </div>
+                                <p class="text-sm font-bold text-olive-deep mb-1">Alto Atractivo Visual</p>
+                                <p class="text-xs text-earth leading-relaxed">Es fácil captar atención inicial gracias a propuestas creativas y llamativas.</p>
+                            </div>
+                            <div class="mt-3 pt-2 border-t border-ivory-200 text-[11px] text-emerald-700 font-medium">✓ Baja pérdida de leads</div>
+                        </div>
+
+                        <!-- Etapa 2: Consultar -->
+                        <div class="rounded-2xl p-4 bg-ivory-50 border border-ivory-200 flex flex-col justify-between">
+                            <div>
+                                <div class="flex items-center justify-between mb-2">
+                                    <span class="text-xs font-bold text-tealbrand-deep uppercase">02. Consultar</span>
+                                    <span class="px-2 py-0.5 rounded-full bg-sky-100 text-sky-800 text-[11px] font-semibold">Oportunidad</span>
+                                </div>
+                                <p class="text-sm font-bold text-olive-deep mb-1">Claridad de Oferta</p>
+                                <p class="text-xs text-earth leading-relaxed">La información de lo que se vende no siempre es del todo clara, aunque igual convierte.</p>
+                            </div>
+                            <div class="mt-3 pt-2 border-t border-ivory-200 text-[11px] text-sky-700 font-medium">↗ Mejorable con portafolio</div>
+                        </div>
+
+                        <!-- Etapa 3: Comprar (CRÍTICO) -->
+                        <div class="rounded-2xl p-4 bg-amber-50/90 border-2 border-gold shadow-gold-glow flex flex-col justify-between relative">
+                            <div>
+                                <div class="flex items-center justify-between mb-2">
+                                    <span class="text-xs font-bold text-amber-900 uppercase">03. Comprar</span>
+                                    <span class="px-2 py-0.5 rounded-full bg-amber-500 text-white text-[11px] font-bold">Fuga Crítica</span>
+                                </div>
+                                <p class="text-sm font-bold text-amber-950 mb-1">Fricción en el Cierre</p>
+                                <p class="text-xs text-amber-900 leading-relaxed">Últimamente se está dificultando concretar la decisión y cierre de compra.</p>
+                            </div>
+                            <div class="mt-3 pt-2 border-t border-amber-200 text-[11px] text-amber-900 font-bold">⚠ Prioridad de intervención</div>
+                        </div>
+
+                        <!-- Etapa 4: Recibir -->
+                        <div class="rounded-2xl p-4 bg-ivory-50 border border-ivory-200 flex flex-col justify-between">
+                            <div>
+                                <div class="flex items-center justify-between mb-2">
+                                    <span class="text-xs font-bold text-tealbrand-deep uppercase">04. Recibir</span>
+                                    <span class="px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-800 text-[11px] font-semibold">Estable</span>
+                                </div>
+                                <p class="text-sm font-bold text-olive-deep mb-1">Entrega Fluida</p>
+                                <p class="text-xs text-earth leading-relaxed">La recepción del producto o servicio digital no presenta mayores dificultades.</p>
+                            </div>
+                            <div class="mt-3 pt-2 border-t border-ivory-200 text-[11px] text-emerald-700 font-medium">✓ Experiencia satisfactoria</div>
+                        </div>
+
+                        <!-- Etapa 5: Recomprar (CRÍTICO) -->
+                        <div class="rounded-2xl p-4 bg-amber-50/90 border-2 border-gold shadow-gold-glow flex flex-col justify-between relative">
+                            <div>
+                                <div class="flex items-center justify-between mb-2">
+                                    <span class="text-xs font-bold text-amber-900 uppercase">05. Recomprar</span>
+                                    <span class="px-2 py-0.5 rounded-full bg-amber-500 text-white text-[11px] font-bold">Fuga Crítica</span>
+                                </div>
+                                <p class="text-sm font-bold text-amber-950 mb-1">Retención Estacional</p>
+                                <p class="text-xs text-amber-900 leading-relaxed">La recurrencia y recompra se está haciendo compleja por estas fechas.</p>
+                            </div>
+                            <div class="mt-3 pt-2 border-t border-amber-200 text-[11px] text-amber-900 font-bold">⚠ Requiere fidelización</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ========================================================= -->
+            <!-- SECCIÓN 2: SELECCIÓN DE CANAL (MATRIZ DE EVALUACIÓN)      -->
+            <!-- ========================================================= -->
+            <section id="panel-sec2" class="tab-panel active-panel space-y-6">
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-gold/30 pb-3">
+                    <div>
+                        <span class="text-xs font-bold uppercase tracking-widest text-tealbrand-deep">Fase 02</span>
+                        <h2 class="font-serif text-2xl sm:text-3xl font-bold text-olive-deep">2. Selección de Canal</h2>
+                    </div>
+                    <span class="px-3 py-1 rounded-full bg-white text-earth text-xs font-medium gold-border-subtle">Escala de evaluación: 1 (bajo) a 5 (alto)</span>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+                    
+                    <!-- Tabla y Barras Comparativas Interactivas (7 columnas) -->
+                    <div class="lg:col-span-7 bg-white rounded-3xl p-6 shadow-card-warm gold-border-subtle">
+                        <div class="flex items-center justify-between mb-5">
+                            <h3 class="text-lg font-bold text-olive-deep">Matriz Comparativa de Criterios</h3>
+                            <div class="flex items-center gap-4 text-xs font-semibold">
+                                <span class="flex items-center gap-1.5 text-gold-dark"><span class="w-3 h-3 rounded-sm gold-gradient-bg inline-block"></span> Instagram (21/25)</span>
+                                <span class="flex items-center gap-1.5 text-tealbrand-deep"><span class="w-3 h-3 rounded-sm bg-tealbrand inline-block"></span> Ferias (13/25)</span>
+                            </div>
+                        </div>
+
+                        <div id="criteriaList" class="space-y-4">
+                            <!-- Los criterios se renderizan dinámicamente con JS para permitir interacción -->
+                        </div>
+
+                        <!-- Caja de detalle interactivo al hacer clic en un criterio -->
+                        <div id="criterionDetailBox" class="mt-5 p-4 rounded-2xl bg-ivory-50 border border-gold/40 text-sm text-earth">
+                            <p class="font-bold text-olive-deep mb-1" id="detailTitle">💡 Haz clic en cualquier criterio para ver el análisis</p>
+                            <p class="text-xs sm:text-sm leading-relaxed" id="detailDesc">Compara por qué Instagram supera en 8 puntos a las ferias presenciales según tu estructura de costos, alcance internacional y comodidad operativa.</p>
+                        </div>
+                    </div>
+
+                    <!-- Gráfico Visual de Radar en Canvas + Tarjetas de Puntaje Total (5 columnas) -->
+                    <div class="lg:col-span-5 bg-white rounded-3xl p-6 shadow-card-warm gold-border-subtle flex flex-col justify-between">
+                        <div>
+                            <h3 class="text-lg font-bold text-olive-deep mb-1">Perfil Visual de Desempeño</h3>
+                            <p class="text-xs text-earth mb-4">Equilibrio estratégico entre caja, margen y capacidad de atención</p>
+                            
+                            <!-- Contenedor responsivo para el Canvas del Gráfico de Radar -->
+                            <div class="relative w-full aspect-square max-h-64 mx-auto flex items-center justify-center">
+                                <canvas id="radarChartCanvas"></canvas>
+                            </div>
+                        </div>
+
+                        <!-- Resumen de Puntajes Totales -->
+                        <div class="grid grid-cols-2 gap-3 mt-4 pt-4 border-t border-ivory-200">
+                            <div class="p-3.5 rounded-2xl bg-gradient-to-br from-ivory-50 to-gold-light/20 border border-gold">
+                                <div class="flex items-center justify-between">
+                                    <span class="text-xs font-bold uppercase text-gold-dark">Ganador</span>
+                                    <span class="text-xs font-bold px-2 py-0.5 rounded-full bg-gold text-olive-deep">84%</span>
+                                </div>
+                                <p class="text-base font-bold text-olive-deep mt-1">Instagram</p>
+                                <p class="text-2xl font-serif font-bold gold-gradient-text">21 / 25 pts</p>
+                            </div>
+
+                            <div class="p-3.5 rounded-2xl bg-ivory-50 border border-ivory-200">
+                                <div class="flex items-center justify-between">
+                                    <span class="text-xs font-bold uppercase text-tealbrand-deep">En pausa</span>
+                                    <span class="text-xs font-semibold px-2 py-0.5 rounded-full bg-tealbrand/15 text-tealbrand-deep">52%</span>
+                                </div>
+                                <p class="text-base font-bold text-olive-deep mt-1">Ferias Presenciales</p>
+                                <p class="text-2xl font-serif font-bold text-tealbrand-deep">13 / 25 pts</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ========================================================= -->
+            <!-- SECCIÓN 3: DECISIÓN ESTRATÉGICA FINAL                     -->
+            <!-- ========================================================= -->
+            <section id="panel-sec3" class="tab-panel active-panel">
+                <div class="bg-white rounded-3xl p-6 sm:p-8 gold-border-glow relative overflow-hidden">
+                    <!-- Acento decorativo superior -->
+                    <div class="absolute top-0 left-0 right-0 h-1.5 gold-gradient-bg"></div>
+
+                    <div class="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6 mb-6">
+                        <div>
+                            <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-gold-light/30 text-olive-deep text-xs font-bold uppercase tracking-wider mb-2">
+                                ★ Resolución Final de la Sesión
+                            </span>
+                            <h2 class="font-serif text-2xl sm:text-3xl font-bold text-olive-deep">Decisión Estratégica de Expansión</h2>
+                        </div>
+                        <div class="px-4 py-2 rounded-2xl bg-ivory-50 border border-ivory-200 text-right">
+                            <span class="block text-[11px] uppercase tracking-wider text-earth-light font-semibold">Puntaje Líder</span>
+                            <span class="text-lg font-bold text-gold-dark">Instagram · 21 / 25 Puntos</span>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <!-- Canal Elegido -->
+                        <div class="rounded-2xl bg-ivory-50 p-6 border border-gold/40 flex flex-col justify-between">
+                            <div>
+                                <div class="w-11 h-11 rounded-2xl gold-gradient-bg text-olive-deep flex items-center justify-center mb-4 shadow-sm">
+                                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+                                </div>
+                                <span class="text-xs font-bold uppercase tracking-wider text-gold-dark">Canal elegido para empezar</span>
+                                <h3 class="font-serif text-2xl font-bold text-olive-deep mt-1 mb-3">Instagram (Vitrina Digital + Cierre WhatsApp)</h3>
+                                <p class="text-sm text-earth leading-relaxed">
+                                    Se selecciona como canal alternativo principal porque potencia tu fortaleza creativa para atraer clientes visualmente, conecta de forma orgánica con mercados internacionales como <strong>Inglaterra</strong>, protege tu flujo de caja al no exigir costos fijos de stand y deriva el cierre hacia <strong>WhatsApp</strong>, donde dominas la conversación personalizada.
+                                </p>
+                            </div>
+                            <div class="mt-4 pt-3 border-t border-ivory-200 flex flex-wrap gap-2">
+                                <span class="px-2.5 py-1 rounded-lg bg-white text-xs font-medium text-olive-deep border border-ivory-200">Cero inversión fija</span>
+                                <span class="px-2.5 py-1 rounded-lg bg-white text-xs font-medium text-olive-deep border border-ivory-200">Alcance global</span>
+                                <span class="px-2.5 py-1 rounded-lg bg-white text-xs font-medium text-olive-deep border border-ivory-200">Sin exposición grupal</span>
+                            </div>
+                        </div>
+
+                        <!-- Producto o Servicio a Ofrecer -->
+                        <div class="rounded-2xl bg-ivory-50 p-6 border border-tealbrand/30 flex flex-col justify-between">
+                            <div>
+                                <div class="w-11 h-11 rounded-2xl bg-tealbrand-deep text-white flex items-center justify-center mb-4 shadow-sm">
+                                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/></svg>
+                                </div>
+                                <span class="text-xs font-bold uppercase tracking-wider text-tealbrand-deep">Producto o servicio a ofrecer (Alto margen)</span>
+                                <h3 class="font-serif text-2xl font-bold text-olive-deep mt-1 mb-3">Servicios Web y Desarrollo a Medida</h3>
+                                <p class="text-sm text-earth leading-relaxed">
+                                    Portafolio enfocado en <strong>freelancing y creación de páginas web completas de diferentes tipos</strong>. Este servicio digital deja un margen de rentabilidad superior, no requiere inventarios físicos y permite estructurar paquetes claros en Instagram para resolver las dudas iniciales antes de pasar al cierre en WhatsApp.
+                                </p>
+                            </div>
+                            <div class="mt-4 pt-3 border-t border-ivory-200 flex flex-wrap gap-2">
+                                <span class="px-2.5 py-1 rounded-lg bg-white text-xs font-medium text-tealbrand-deep border border-ivory-200">Freelancing Web</span>
+                                <span class="px-2.5 py-1 rounded-lg bg-white text-xs font-medium text-tealbrand-deep border border-ivory-200">Sitios Web Completos</span>
+                                <span class="px-2.5 py-1 rounded-lg bg-white text-xs font-medium text-tealbrand-deep border border-ivory-200">Alto Margen Neto</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+        </main>
+
+        <!-- Pie de página institucional -->
+        <footer class="mt-10 pt-6 border-t border-ivory-200 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-earth-light">
+            <p>Universidad del Valle · Vicerrectoría de Extensión y Proyección Social · Reactiva Emprendedores Univalle</p>
+            <p>Presentación Ejecutiva · Sesión 7: Ventas y Canales</p>
+        </footer>
+    </div>
+
+    <!-- LÓGICA INTERACTIVA: Matriz de Evaluación, Gráfico Radar Canvas, Pestañas y Modo Presentación -->
+    <script>
+        // Datos estructurados de los criterios de evaluación (Sesión 7)
+        const evaluationCriteria = [
+            {
+                id: 'clientes',
+                name: 'Mis clientes están ahí',
+                instagram: 4,
+                ferias: 3,
+                analysis: 'En Instagram (4/5) puedes alcanzar fácilmente a clientes internacionales en Inglaterra mediante portafolio visual y contenido llamativo. En ferias presenciales (3/5) el alcance se limita al tráfico físico local del evento.'
+            },
+            {
+                id: 'margen',
+                name: 'Margen positivo',
+                instagram: 5,
+                ferias: 4,
+                analysis: 'Instagram (5/5) permite vender servicios web con margen íntegro al no cobrar comisiones ni intermediarios. En ferias (4/5) el margen sigue siendo positivo, pero se reduce por costos de inscripción, transporte y montaje.'
+            },
+            {
+                id: 'atencion',
+                name: 'Puedo atenderlo',
+                instagram: 4,
+                ferias: 2,
+                analysis: 'Instagram (4/5) se adapta perfectamente a tu estilo de comunicación escrita y personalizada por chat/WhatsApp. Las ferias presenciales (2/5) requieren entrenamiento de speech comercial y exposición frente a grupos numerosos.'
+            },
+            {
+                id: 'caja',
+                name: 'Cuida mi caja',
+                instagram: 5,
+                ferias: 2,
+                analysis: 'Instagram (5/5) cuida tu liquidez porque puedes crecer de forma orgánica sin desembolsar capital inicial. Las ferias (2/5) exigen pago anticipado de stand sin garantía inmediata de cierre.'
+            },
+            {
+                id: 'indicadores',
+                name: 'Cumple indicadores',
+                instagram: 3,
+                ferias: 2,
+                analysis: 'Instagram (3/5) recién inicia, pero permite medir alcance, mensajes directos y conversiones a WhatsApp de forma precisa. En ferias (2/5) actualmente es difícil concretar contactos y medir retorno.'
+            }
+        ];
+
+        // Renderizado de barras comparativas interactivas
+        function renderCriteriaBars() {
+            const container = document.getElementById('criteriaList');
+            if (!container) return;
+
+            container.innerHTML = evaluationCriteria.map((item, idx) => `
+                <div onclick="selectCriterion(${idx})" class="criterion-row p-3.5 rounded-2xl bg-ivory-50/70 hover:bg-ivory-100 border border-ivory-200 hover:border-gold transition-all cursor-pointer">
+                    <div class="flex items-center justify-between mb-2">
+                        <span class="text-sm font-bold text-olive-deep">${item.name}</span>
+                        <div class="flex items-center gap-3 text-xs font-bold">
+                            <span class="text-gold-dark">IG: ${item.instagram}/5</span>
+                            <span class="text-tealbrand-deep">Ferias: ${item.ferias}/5</span>
+                        </div>
+                    </div>
+                    <!-- Barra Instagram -->
+                    <div class="space-y-1.5">
+                        <div class="w-full bg-ivory-200 rounded-full h-2 overflow-hidden">
+                            <div class="gold-gradient-bg h-2 rounded-full transition-all duration-500" style="width: ${(item.instagram / 5) * 100}%"></div>
+                        </div>
+                        <!-- Barra Ferias -->
+                        <div class="w-full bg-ivory-200 rounded-full h-2 overflow-hidden">
+                            <div class="bg-tealbrand h-2 rounded-full transition-all duration-500" style="width: ${(item.ferias / 5) * 100}%"></div>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Mostrar análisis detallado al hacer clic en un criterio
+        function selectCriterion(index) {
+            const item = evaluationCriteria[index];
+            const titleEl = document.getElementById('detailTitle');
+            const descEl = document.getElementById('detailDesc');
+            if (titleEl && descEl && item) {
+                titleEl.textContent = `📊 Criterio: ${item.name} (Instagram ${item.instagram}/5 vs. Ferias ${item.ferias}/5)`;
+                descEl.textContent = item.analysis;
+            }
+        }
+
+        // Dibujo responsivo del Gráfico de Radar en Canvas
+        function drawRadarChart() {
+            const canvas = document.getElementById('radarChartCanvas');
+            if (!canvas) return;
+            const parent = canvas.parentElement;
+            const size = Math.min(parent.clientWidth, parent.clientHeight) || 260;
+            const dpr = window.devicePixelRatio || 1;
+
+            canvas.width = size * dpr;
+            canvas.height = size * dpr;
+            canvas.style.width = size + 'px';
+            canvas.style.height = size + 'px';
+
+            const ctx = canvas.getContext('2d');
+            ctx.scale(dpr, dpr);
+
+            const cx = size / 2;
+            const cy = size / 2;
+            const maxRadius = size * 0.34;
+            const sides = evaluationCriteria.length;
+            const angleStep = (Math.PI * 2) / sides;
+
+            ctx.clearRect(0, 0, size, size);
+
+            // Niveles concéntricos (1 a 5)
+            for (let level = 1; level <= 5; level++) {
+                const r = (maxRadius / 5) * level;
+                ctx.beginPath();
+                for (let i = 0; i < sides; i++) {
+                    const angle = i * angleStep - Math.PI / 2;
+                    const x = cx + r * Math.cos(angle);
+                    const y = cy + r * Math.sin(angle);
+                    if (i === 0) ctx.moveTo(x, y);
+                    else ctx.lineTo(x, y);
+                }
+                ctx.closePath();
+                ctx.strokeStyle = level === 5 ? 'rgba(212, 175, 55, 0.5)' : 'rgba(92, 73, 56, 0.14)';
+                ctx.lineWidth = level === 5 ? 1.5 : 1;
+                ctx.stroke();
+            }
+
+            // Ejes y etiquetas cortas
+            const shortLabels = ['Clientes', 'Margen', 'Atención', 'Caja', 'Indicadores'];
+            ctx.font = '600 11px Inter, sans-serif';
+            ctx.fillStyle = '#3E4A35';
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'middle';
+
+            for (let i = 0; i < sides; i++) {
+                const angle = i * angleStep - Math.PI / 2;
+                const x = cx + maxRadius * Math.cos(angle);
+                const y = cy + maxRadius * Math.sin(angle);
+
+                ctx.beginPath();
+                ctx.moveTo(cx, cy);
+                ctx.lineTo(x, y);
+                ctx.strokeStyle = 'rgba(92, 73, 56, 0.15)';
+                ctx.stroke();
+
+                const labelR = maxRadius + 22;
+                const lx = cx + labelR * Math.cos(angle);
+                const ly = cy + labelR * Math.sin(angle);
+                ctx.fillText(shortLabels[i], lx, ly);
+            }
+
+            // Función auxiliar para dibujar polígono de datos
+            function drawDataset(values, strokeColor, fillColor) {
+                ctx.beginPath();
+                for (let i = 0; i < sides; i++) {
+                    const val = values[i];
+                    const r = (maxRadius / 5) * val;
+                    const angle = i * angleStep - Math.PI / 2;
+                    const x = cx + r * Math.cos(angle);
+                    const y = cy + r * Math.sin(angle);
+                    if (i === 0) ctx.moveTo(x, y);
+                    else ctx.lineTo(x, y);
+                }
+                ctx.closePath();
+                ctx.fillStyle = fillColor;
+                ctx.fill();
+                ctx.strokeStyle = strokeColor;
+                ctx.lineWidth = 2.2;
+                ctx.stroke();
+
+                // Puntos en vértices
+                for (let i = 0; i < sides; i++) {
+                    const val = values[i];
+                    const r = (maxRadius / 5) * val;
+                    const angle = i * angleStep - Math.PI / 2;
+                    const x = cx + r * Math.cos(angle);
+                    const y = cy + r * Math.sin(angle);
+                    ctx.beginPath();
+                    ctx.arc(x, y, 3.5, 0, Math.PI * 2);
+                    ctx.fillStyle = strokeColor;
+                    ctx.fill();
+                }
+            }
+
+            // Polígono Ferias Presenciales (Teal)
+            drawDataset(
+                evaluationCriteria.map(c => c.ferias),
+                '#2C6E7F',
+                'rgba(74, 139, 156, 0.22)'
+            );
+
+            // Polígono Instagram (Dorado)
+            drawDataset(
+                evaluationCriteria.map(c => c.instagram),
+                '#D4AF37',
+                'rgba(230, 184, 77, 0.32)'
+            );
+        }
+
+        // Navegación por pestañas
+        function switchTab(tabId) {
+            const panels = ['sec1', 'sec2', 'sec3'];
+            const buttons = document.querySelectorAll('.tab-btn');
+
+            buttons.forEach(btn => {
+                btn.classList.remove('bg-olive-deep', 'text-white', 'shadow-sm', 'font-semibold');
+                btn.classList.add('bg-ivory-100', 'text-earth', 'font-medium');
+            });
+
+            const activeBtn = document.getElementById('tab-' + tabId);
+            if (activeBtn) {
+                activeBtn.classList.remove('bg-ivory-100', 'text-earth', 'font-medium');
+                activeBtn.classList.add('bg-olive-deep', 'text-white', 'shadow-sm', 'font-semibold');
+            }
+
+            panels.forEach(id => {
+                const el = document.getElementById('panel-' + id);
+                if (!el) return;
+                if (tabId === 'all' || tabId === id) {
+                    el.classList.remove('hidden-panel');
+                    el.classList.add('active-panel');
+                } else {
+                    el.classList.remove('active-panel');
+                    el.classList.add('hidden-panel');
+                }
+            });
+
+            if (tabId === 'all' || tabId === 'sec2') {
+                setTimeout(drawRadarChart, 50);
+            }
+        }
+
+        // Modo Presentación (Diapositivas paso a paso)
+        let isPresentationMode = false;
+        let currentSlide = 0;
+        const slides = [
+            { id: 'sec1', title: '1. Diagnóstico Inicial' },
+            { id: 'sec2', title: '2. Selección de Canal (Matriz de Evaluación)' },
+            { id: 'sec3', title: '3. Decisión Estratégica Final' }
+        ];
+
+        function togglePresentationMode() {
+            isPresentationMode = !isPresentationMode;
+            const body = document.body;
+            const label = document.getElementById('btnPresentationLabel');
+
+            if (isPresentationMode) {
+                body.classList.add('presentation-active');
+                label.textContent = 'Vista Documento';
+                currentSlide = 0;
+                updateSlideView();
+            } else {
+                body.classList.remove('presentation-active');
+                label.textContent = 'Modo Presentación';
+                switchTab('all');
+            }
+        }
+
+        function updateSlideView() {
+            const slide = slides[currentSlide];
+            document.getElementById('slideNumber').textContent = currentSlide + 1;
+            document.getElementById('slideTitle').textContent = slide.title;
+            switchTab(slide.id);
+        }
+
+        function nextSlide() {
+            if (!isPresentationMode) return;
+            currentSlide = (currentSlide + 1) % slides.length;
+            updateSlideView();
+        }
+
+        function prevSlide() {
+            if (!isPresentationMode) return;
+            currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+            updateSlideView();
+        }
+
+        // Soporte de teclado en modo presentación
+        document.addEventListener('keydown', (e) => {
+            if (!isPresentationMode) return;
+            if (e.key === 'ArrowRight' || e.key === ' ') {
+                e.preventDefault();
+                nextSlide();
+            } else if (e.key === 'ArrowLeft') {
+                e.preventDefault();
+                prevSlide();
+            } else if (e.key === 'Escape') {
+                togglePresentationMode();
+            }
+        });
+
+        // Inicialización al cargar y redimensionar
+        window.addEventListener('load', () => {
+            renderCriteriaBars();
+            drawRadarChart();
+        });
+
+        window.addEventListener('resize', () => {
+            drawRadarChart();
+        });
+    </script>
+</body>
+</html>
