@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mis Canales Alternativos | Reactiva Emprendedores Univalle</title>
+    <meta name="description" content="Presentación ejecutiva de la Sesión 7 (Ventas y Canales) del programa Reactiva Emprendedores Univalle: diagnóstico, selección de canal y decisión estratégica.">
+    <meta name="theme-color" content="#FAF7F0">
+    <link rel="icon" type="image/png" href="assets/logo.png">
     <!-- Carga de Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Fuentes Google: Cormorant Garamond para elegancia editorial e Inter para legibilidad -->
@@ -82,14 +85,19 @@
             background: linear-gradient(135deg, #E6B84D 0%, #D4AF37 55%, #C59B27 100%);
         }
 
-        /* Animación suave para el resplandor de la llama y loto */
-        @keyframes pulseGlow {
-            0%, 100% { filter: drop-shadow(0 0 6px rgba(245, 208, 97, 0.55)); }
-            50% { filter: drop-shadow(0 0 14px rgba(230, 184, 77, 0.9)); }
+        /* Accesibilidad: foco visible para navegación con teclado */
+        :focus-visible {
+            outline: 2px solid #B58E22;
+            outline-offset: 2px;
+            border-radius: 0.5rem;
         }
 
-        .lotus-glow {
-            animation: pulseGlow 4s ease-in-out infinite;
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation-duration: 0.001ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.001ms !important;
+            }
         }
 
         /* Transiciones de pestañas */
@@ -125,6 +133,10 @@
         }
 
         /* Optimización para Impresión / Guardar PDF */
+        @page {
+            margin: 14mm;
+        }
+
         @media print {
             body {
                 background-color: #FFFFFF !important;
@@ -148,6 +160,15 @@
                 border-bottom: 2px solid #D4AF37 !important;
                 padding-bottom: 12px !important;
             }
+            .presentation-controls {
+                display: none !important;
+            }
+            body.presentation-active .slide-container {
+                min-height: 0 !important;
+            }
+            section, .rounded-2xl, .rounded-3xl {
+                break-inside: avoid;
+            }
         }
     </style>
 </head>
@@ -167,91 +188,26 @@
         <header class="bg-white/90 backdrop-blur-md rounded-3xl p-6 sm:p-8 shadow-card-warm gold-border-subtle mb-8">
             <div class="flex flex-col lg:flex-row items-center justify-between gap-6">
                 
-                <!-- Identidad Visual: Logotipo SVG personalizado + Títulos -->
+                <!-- Identidad Visual: Logotipo institucional + Títulos -->
+                <!--
+                    ══════════════════════════════════════════════════════════════
+                    LOGO: coloca aquí la imagen del logo real.
+                    Ruta esperada: assets/logo.png  (junto a este HTML)
+                    Si tu archivo tiene otro nombre o formato, cambia el
+                    atributo src de la etiqueta <img> de abajo.
+                    ══════════════════════════════════════════════════════════════
+                -->
                 <div class="flex flex-col sm:flex-row items-center text-center sm:text-left gap-5 sm:gap-6">
-                    <!-- Emblema Circular Loto y Llama Dorada -->
-                    <div class="relative flex-shrink-0 w-24 h-24 sm:w-28 sm:h-28">
-                        <svg viewBox="0 0 220 220" class="w-full h-full lotus-glow" role="img" aria-label="Logotipo Emblema Loto y Llama Dorada">
-                            <defs>
-                                <!-- Gradiente de fondo marfil texturizado -->
-                                <radialGradient id="ivoryCoinBg" cx="45%" cy="40%" r="60%">
-                                    <stop offset="0%" stop-color="#FFFDF9"/>
-                                    <stop offset="70%" stop-color="#F6F0E2"/>
-                                    <stop offset="100%" stop-color="#EAE0CA"/>
-                                </radialGradient>
-                                <!-- Gradiente dorado metálico -->
-                                <linearGradient id="metallicGold" x1="0%" y1="0%" x2="100%" y2="100%">
-                                    <stop offset="0%" stop-color="#F7DC79"/>
-                                    <stop offset="35%" stop-color="#D4AF37"/>
-                                    <stop offset="70%" stop-color="#B38728"/>
-                                    <stop offset="100%" stop-color="#F3D066"/>
-                                </linearGradient>
-                                <!-- Gradiente luminoso para pétalos y llama -->
-                                <linearGradient id="brightGold" x1="0%" y1="100%" x2="0%" y2="0%">
-                                    <stop offset="0%" stop-color="#C89B2B"/>
-                                    <stop offset="55%" stop-color="#E6B84D"/>
-                                    <stop offset="100%" stop-color="#FFF2B2"/>
-                                </linearGradient>
-                                <!-- Resplandor suave -->
-                                <filter id="softGoldGlow" x="-20%" y="-20%" width="140%" height="140%">
-                                    <feGaussianBlur stdDeviation="2.5" result="blur"/>
-                                    <feComposite in="SourceGraphic" in2="blur" operator="over"/>
-                                </filter>
-                            </defs>
-
-                            <!-- Borde exterior metálico doble -->
-                            <circle cx="110" cy="110" r="104" fill="url(#metallicGold)" />
-                            <circle cx="110" cy="110" r="98" fill="url(#ivoryCoinBg)" />
-                            <circle cx="110" cy="110" r="94" fill="none" stroke="url(#metallicGold)" stroke-width="2" />
-
-                            <!-- Ramas curvilíneas simétricas y hojas laterales -->
-                            <g fill="none" stroke="url(#metallicGold)" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round">
-                                <!-- Tallo central hacia loto -->
-                                <path d="M110 118 C110 132, 95 142, 85 152 C72 165, 88 184, 110 184 C132 184, 148 165, 135 152 C125 142, 110 132, 110 118" />
-                                <!-- Espirales laterales izquierdas -->
-                                <path d="M107 134 C88 124, 68 134, 72 150 C75 160, 88 158, 88 148" />
-                                <path d="M106 168 C78 176, 52 154, 48 122" />
-                                <path d="M74 166 C56 162, 42 146, 38 128" />
-                                <!-- Espirales laterales derechas -->
-                                <path d="M113 134 C132 124, 152 134, 148 150 C145 160, 132 158, 132 148" />
-                                <path d="M114 168 C142 176, 168 154, 172 122" />
-                                <path d="M146 166 C164 162, 178 146, 182 128" />
-                            </g>
-
-                            <!-- Hojas doradas en las ramas -->
-                            <g fill="url(#brightGold)" stroke="#A67C1E" stroke-width="1">
-                                <!-- Izquierda -->
-                                <path d="M48 122 C42 112, 46 100, 52 96 C56 104, 54 115, 48 122 Z" />
-                                <path d="M38 128 C30 120, 31 108, 36 103 C42 110, 43 120, 38 128 Z" />
-                                <path d="M55 144 C45 142, 40 133, 42 127 C49 130, 54 137, 55 144 Z" />
-                                <!-- Derecha -->
-                                <path d="M172 122 C178 112, 174 100, 168 96 C164 104, 166 115, 172 122 Z" />
-                                <path d="M182 128 C190 120, 189 108, 184 103 C178 110, 177 120, 182 128 Z" />
-                                <path d="M165 144 C175 142, 180 133, 178 127 C171 130, 166 137, 165 144 Z" />
-                            </g>
-
-                            <!-- Llama dorada brillante en la base central -->
-                            <g filter="url(#softGoldGlow)">
-                                <path d="M110 144 C118 155, 121 164, 116 171 C113 175, 107 175, 104 171 C99 164, 102 155, 110 144 Z" fill="url(#brightGold)" stroke="#FFF5C0" stroke-width="1.2"/>
-                                <path d="M110 155 C114 161, 115 166, 112 170 C110 172, 108 170, 107 167 C106 163, 108 159, 110 155 Z" fill="#FFFDF5"/>
-                            </g>
-
-                            <!-- Flor de Loto Geométrica Dorada Luminosa -->
-                            <g filter="url(#softGoldGlow)" stroke="#FFF4BD" stroke-width="1.3" stroke-linejoin="round">
-                                <!-- Pétalos traseros -->
-                                <path d="M110 116 L76 80 L88 64 L110 92 Z" fill="url(#metallicGold)"/>
-                                <path d="M110 116 L144 80 L132 64 L110 92 Z" fill="url(#metallicGold)"/>
-                                <!-- Pétalos laterales bajos -->
-                                <path d="M110 116 L54 104 L64 88 L92 104 Z" fill="url(#brightGold)"/>
-                                <path d="M110 116 L166 104 L156 88 L128 104 Z" fill="url(#brightGold)"/>
-                                <!-- Pétalos medios -->
-                                <path d="M110 116 L66 84 L82 72 L104 100 Z" fill="url(#brightGold)"/>
-                                <path d="M110 116 L154 84 L138 72 L116 100 Z" fill="url(#brightGold)"/>
-                                <!-- Pétalo central facetado -->
-                                <path d="M110 116 L94 76 L110 46 L126 76 Z" fill="url(#brightGold)"/>
-                                <line x1="110" y1="46" x2="110" y2="116" stroke="#FFF9D6" stroke-width="1.2"/>
-                            </g>
-                        </svg>
+                    <!-- Logo institucional -->
+                    <div class="relative flex-shrink-0 w-24 h-24 sm:w-28 sm:h-28 rounded-full bg-white gold-border-subtle shadow-card-warm overflow-hidden flex items-center justify-center">
+                        <img src="assets/logo.png"
+                             alt="Logotipo Reactiva Emprendedores Univalle"
+                             class="w-full h-full object-contain p-1.5"
+                             onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <!-- Respaldo visible solo si falta la imagen del logo -->
+                        <div style="display:none" class="absolute inset-0 items-center justify-center bg-ivory-100 text-gold-dark text-[10px] font-bold text-center px-2 leading-tight">
+                            LOGO<br>assets/logo.png
+                        </div>
                     </div>
 
                     <!-- Textos Institucionales -->
@@ -271,11 +227,11 @@
 
                 <!-- Acciones Rápidas: Modo Presentación e Imprimir PDF -->
                 <div class="flex flex-wrap items-center justify-center gap-3 no-print">
-                    <button id="btnPresentationMode" onclick="togglePresentationMode()" class="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-tealbrand-deep hover:bg-tealbrand text-white text-sm font-medium shadow-sm transition-all cursor-pointer">
+                    <button type="button" id="btnPresentationMode" onclick="togglePresentationMode()" class="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-tealbrand-deep hover:bg-tealbrand text-white text-sm font-medium shadow-sm transition-all cursor-pointer">
                         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 12l3-3 3 3 4-4M8 21l4-4 4 4M3 4h18M4 4h16v12a1 1 0 01-1 1H5a1 1 0 01-1-1V4z"/></svg>
                         <span id="btnPresentationLabel">Modo Presentación</span>
                     </button>
-                    <button onclick="window.print()" class="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl gold-gradient-bg hover:brightness-105 text-olive-deep text-sm font-semibold shadow-sm transition-all cursor-pointer">
+                    <button type="button" onclick="window.print()" class="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl gold-gradient-bg hover:brightness-105 text-olive-deep text-sm font-semibold shadow-sm transition-all cursor-pointer">
                         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"/></svg>
                         <span>Imprimir / Guardar PDF</span>
                     </button>
@@ -285,18 +241,20 @@
             <!-- Barra de Navegación por Pestañas -->
             <nav class="mt-6 pt-5 border-t border-ivory-200 flex flex-wrap items-center justify-between gap-3 no-print no-presentation" aria-label="Secciones de la presentación">
                 <div class="flex flex-wrap gap-2">
-                    <button onclick="switchTab('all')" id="tab-all" class="tab-btn px-4 py-2 rounded-xl text-sm font-semibold transition-all bg-olive-deep text-white shadow-sm cursor-pointer">
+                    <button type="button" aria-pressed="true" onclick="switchTab('all')" id="tab-all" class="tab-btn px-4 py-2 rounded-xl text-sm font-semibold transition-all bg-olive-deep text-white shadow-sm cursor-pointer">
                         Vista Completa
                     </button>
-                    <button onclick="switchTab('sec1')" id="tab-sec1" class="tab-btn px-4 py-2 rounded-xl text-sm font-medium transition-all bg-ivory-100 text-earth hover:bg-ivory-200 cursor-pointer">
-                        1. Diagnóstico Inicial
-                    </button>
-                    <button onclick="switchTab('sec2')" id="tab-sec2" class="tab-btn px-4 py-2 rounded-xl text-sm font-medium transition-all bg-ivory-100 text-earth hover:bg-ivory-200 cursor-pointer">
-                        2. Selección de Canal
-                    </button>
-                    <button onclick="switchTab('sec3')" id="tab-sec3" class="tab-btn px-4 py-2 rounded-xl text-sm font-medium transition-all bg-ivory-100 text-earth hover:bg-ivory-200 cursor-pointer">
-                        3. Decisión Estratégica
-                    </button>
+                    <div role="tablist" aria-label="Secciones de la presentación" class="flex flex-wrap gap-2">
+                        <button type="button" role="tab" aria-selected="false" aria-controls="panel-sec1" onclick="switchTab('sec1')" id="tab-sec1" class="tab-btn px-4 py-2 rounded-xl text-sm font-medium transition-all bg-ivory-100 text-earth hover:bg-ivory-200 cursor-pointer">
+                            1. Diagnóstico Inicial
+                        </button>
+                        <button type="button" role="tab" aria-selected="false" aria-controls="panel-sec2" onclick="switchTab('sec2')" id="tab-sec2" class="tab-btn px-4 py-2 rounded-xl text-sm font-medium transition-all bg-ivory-100 text-earth hover:bg-ivory-200 cursor-pointer">
+                            2. Selección de Canal
+                        </button>
+                        <button type="button" role="tab" aria-selected="false" aria-controls="panel-sec3" onclick="switchTab('sec3')" id="tab-sec3" class="tab-btn px-4 py-2 rounded-xl text-sm font-medium transition-all bg-ivory-100 text-earth hover:bg-ivory-200 cursor-pointer">
+                            3. Decisión Estratégica
+                        </button>
+                    </div>
                 </div>
                 <span class="text-xs text-earth-light hidden sm:inline">Haz clic en las tarjetas o criterios para explorar detalles</span>
             </nav>
@@ -309,9 +267,9 @@
                 <span id="slideTitle" class="text-sm font-semibold text-earth">1. Diagnóstico Inicial</span>
             </div>
             <div class="flex items-center gap-2">
-                <button onclick="prevSlide()" class="px-3 py-1.5 rounded-lg bg-ivory-100 hover:bg-ivory-200 text-olive-deep text-sm font-medium transition cursor-pointer">← Anterior</button>
-                <button onclick="nextSlide()" class="px-3 py-1.5 rounded-lg bg-olive-deep hover:bg-olive text-white text-sm font-medium transition cursor-pointer">Siguiente →</button>
-                <button onclick="togglePresentationMode()" class="ml-2 px-3 py-1.5 rounded-lg border border-earth/20 text-earth text-xs font-medium hover:bg-ivory-100 transition cursor-pointer">Salir (Esc)</button>
+                <button type="button" onclick="prevSlide()" class="px-3 py-1.5 rounded-lg bg-ivory-100 hover:bg-ivory-200 text-olive-deep text-sm font-medium transition cursor-pointer">← Anterior</button>
+                <button type="button" onclick="nextSlide()" class="px-3 py-1.5 rounded-lg bg-olive-deep hover:bg-olive text-white text-sm font-medium transition cursor-pointer">Siguiente →</button>
+                <button type="button" onclick="togglePresentationMode()" class="ml-2 px-3 py-1.5 rounded-lg border border-earth/20 text-earth text-xs font-medium hover:bg-ivory-100 transition cursor-pointer">Salir (Esc)</button>
             </div>
         </div>
 
@@ -321,7 +279,7 @@
             <!-- ========================================================= -->
             <!-- SECCIÓN 1: DIAGNÓSTICO INICIAL                            -->
             <!-- ========================================================= -->
-            <section id="panel-sec1" class="tab-panel active-panel space-y-6">
+            <section id="panel-sec1" role="tabpanel" aria-labelledby="tab-sec1" class="tab-panel active-panel space-y-6">
                 <div class="flex items-center justify-between border-b border-gold/30 pb-3">
                     <div>
                         <span class="text-xs font-bold uppercase tracking-widest text-tealbrand-deep">Fase 01</span>
@@ -521,7 +479,7 @@
             <!-- ========================================================= -->
             <!-- SECCIÓN 2: SELECCIÓN DE CANAL (MATRIZ DE EVALUACIÓN)      -->
             <!-- ========================================================= -->
-            <section id="panel-sec2" class="tab-panel active-panel space-y-6">
+            <section id="panel-sec2" role="tabpanel" aria-labelledby="tab-sec2" class="tab-panel active-panel space-y-6">
                 <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-gold/30 pb-3">
                     <div>
                         <span class="text-xs font-bold uppercase tracking-widest text-tealbrand-deep">Fase 02</span>
@@ -547,7 +505,7 @@
                         </div>
 
                         <!-- Caja de detalle interactivo al hacer clic en un criterio -->
-                        <div id="criterionDetailBox" class="mt-5 p-4 rounded-2xl bg-ivory-50 border border-gold/40 text-sm text-earth">
+                        <div id="criterionDetailBox" role="status" aria-live="polite" class="mt-5 p-4 rounded-2xl bg-ivory-50 border border-gold/40 text-sm text-earth">
                             <p class="font-bold text-olive-deep mb-1" id="detailTitle">💡 Haz clic en cualquier criterio para ver el análisis</p>
                             <p class="text-xs sm:text-sm leading-relaxed" id="detailDesc">Compara por qué Instagram supera en 8 puntos a las ferias presenciales según tu estructura de costos, alcance internacional y comodidad operativa.</p>
                         </div>
@@ -561,7 +519,8 @@
                             
                             <!-- Contenedor responsivo para el Canvas del Gráfico de Radar -->
                             <div class="relative w-full aspect-square max-h-64 mx-auto flex items-center justify-center">
-                                <canvas id="radarChartCanvas"></canvas>
+                                <canvas id="radarChartCanvas" role="img" aria-label="Gráfico de radar comparando Instagram (21 de 25 puntos) frente a Ferias Presenciales (13 de 25 puntos) en cinco criterios."></canvas>
+                                <p class="sr-only">Instagram obtiene 4 de 5 en clientes, 5 en margen, 4 en atención, 5 en caja y 3 en indicadores. Ferias presenciales obtiene 3, 4, 2, 2 y 2 respectivamente.</p>
                             </div>
                         </div>
 
@@ -592,7 +551,7 @@
             <!-- ========================================================= -->
             <!-- SECCIÓN 3: DECISIÓN ESTRATÉGICA FINAL                     -->
             <!-- ========================================================= -->
-            <section id="panel-sec3" class="tab-panel active-panel">
+            <section id="panel-sec3" role="tabpanel" aria-labelledby="tab-sec3" class="tab-panel active-panel">
                 <div class="bg-white rounded-3xl p-6 sm:p-8 gold-border-glow relative overflow-hidden">
                     <!-- Acento decorativo superior -->
                     <div class="absolute top-0 left-0 right-0 h-1.5 gold-gradient-bg"></div>
@@ -708,7 +667,10 @@
             if (!container) return;
 
             container.innerHTML = evaluationCriteria.map((item, idx) => `
-                <div onclick="selectCriterion(${idx})" class="criterion-row p-3.5 rounded-2xl bg-ivory-50/70 hover:bg-ivory-100 border border-ivory-200 hover:border-gold transition-all cursor-pointer">
+                <div role="button" tabindex="0"
+                     onclick="selectCriterion(${idx})"
+                     onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();selectCriterion(${idx});}"
+                     class="criterion-row p-3.5 rounded-2xl bg-ivory-50/70 hover:bg-ivory-100 border border-ivory-200 hover:border-gold transition-all cursor-pointer">
                     <div class="flex items-center justify-between mb-2">
                         <span class="text-sm font-bold text-olive-deep">${item.name}</span>
                         <div class="flex items-center gap-3 text-xs font-bold">
@@ -862,12 +824,22 @@
             buttons.forEach(btn => {
                 btn.classList.remove('bg-olive-deep', 'text-white', 'shadow-sm', 'font-semibold');
                 btn.classList.add('bg-ivory-100', 'text-earth', 'font-medium');
+                if (btn.getAttribute('role') === 'tab') {
+                    btn.setAttribute('aria-selected', 'false');
+                } else {
+                    btn.setAttribute('aria-pressed', 'false');
+                }
             });
 
             const activeBtn = document.getElementById('tab-' + tabId);
             if (activeBtn) {
                 activeBtn.classList.remove('bg-ivory-100', 'text-earth', 'font-medium');
                 activeBtn.classList.add('bg-olive-deep', 'text-white', 'shadow-sm', 'font-semibold');
+                if (activeBtn.getAttribute('role') === 'tab') {
+                    activeBtn.setAttribute('aria-selected', 'true');
+                } else {
+                    activeBtn.setAttribute('aria-pressed', 'true');
+                }
             }
 
             panels.forEach(id => {
@@ -918,6 +890,7 @@
             document.getElementById('slideNumber').textContent = currentSlide + 1;
             document.getElementById('slideTitle').textContent = slide.title;
             switchTab(slide.id);
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
         function nextSlide() {
@@ -935,12 +908,28 @@
         // Soporte de teclado en modo presentación
         document.addEventListener('keydown', (e) => {
             if (!isPresentationMode) return;
+            const tag = (e.target.tagName || '').toLowerCase();
+            if (e.key === ' ' && ['button', 'a', 'input', 'textarea'].includes(tag)) return;
             if (e.key === 'ArrowRight' || e.key === ' ') {
                 e.preventDefault();
                 nextSlide();
             } else if (e.key === 'ArrowLeft') {
                 e.preventDefault();
                 prevSlide();
+            } else if (e.key === 'PageDown') {
+                e.preventDefault();
+                nextSlide();
+            } else if (e.key === 'PageUp') {
+                e.preventDefault();
+                prevSlide();
+            } else if (e.key === 'Home') {
+                e.preventDefault();
+                currentSlide = 0;
+                updateSlideView();
+            } else if (e.key === 'End') {
+                e.preventDefault();
+                currentSlide = slides.length - 1;
+                updateSlideView();
             } else if (e.key === 'Escape') {
                 togglePresentationMode();
             }
@@ -952,8 +941,10 @@
             drawRadarChart();
         });
 
+        let resizeTimer;
         window.addEventListener('resize', () => {
-            drawRadarChart();
+            clearTimeout(resizeTimer);
+            resizeTimer = setTimeout(drawRadarChart, 120);
         });
     </script>
 </body>
